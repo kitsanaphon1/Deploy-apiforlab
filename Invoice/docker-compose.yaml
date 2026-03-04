@@ -1,0 +1,15 @@
+services:
+  api-invoice:
+    image: sooyaa1/invoice-erpapi:v1  # ดึง Image ที่คุณเพิ่ง Push ไป
+    container_name: fastapi-invoice-api
+    ports:
+      - "8002:8000"  # ใช้ Port 8002 เพื่อไม่ให้ชนกับ Customer(8000) และ Order(8001)
+    environment:
+      # เชื่อมต่อไปยัง container ชื่อ postgres-db โดยตรง
+      # หมายเหตุ: หากรันคนละ Compose ต้องมั่นใจว่าอยู่ Network เดียวกัน
+      - DATABASE_URL=postgresql://postgres:postgres@postgres-db:5432/hrdb
+      - API_KEY=chosy-secret-key-2026
+    restart: unless-stopped
+    # หากคุณมี network กลาง ให้ระบุตรงนี้ครับ
+    # networks:
+    #   - erp-network

@@ -1,0 +1,31 @@
+services:
+  # ส่วนของฐานข้อมูล PostgreSQL
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hrdb
+      TZ: Asia/Bangkok
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # ส่วนของ FastAPI ที่ Pull มาจาก Docker Hub
+  api:
+    image: sooyaa1/erpapi-customer:v1
+    container_name: fastapi-customer-api
+    ports:
+      - "8000:8000"
+    environment:
+      # เชื่อมต่อไปยัง service ชื่อ 'postgres' ด้านบน
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/hrdb
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  pg_data:kritsanapon 
