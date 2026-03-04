@@ -18,8 +18,8 @@ pipeline {
 
     stage('Sync Customer to Docker Server') {
       steps {
-        // 1. แก้ไข ID ให้ตรงกับใน Jenkins ของคุณ (จาก Log คือ docker-server-test)
-        sshagent(['docker-server-test']) { 
+        // 1. แก้ไข ID ให้ตรงกับใน Jenkins ของคุณ (จาก Log คือ docker-server)
+        sshagent(['docker-server']) { 
           sh '''
             set -eux
 
