@@ -18,7 +18,7 @@ pipeline {
 
     stage('Sync Customer to Docker Server') {
       steps {
-        sshagent(['docker-server-test']) { // <-- ใส่ ID credential ของคุณ (จาก log: Docker-server-test)
+        sshagent(['docker-server']) { // <-- ใส่ ID credential ของคุณ (จาก log: Docker-server-test)
           sh '''
             set -eux
 
