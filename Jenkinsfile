@@ -7,7 +7,7 @@ pipeline {
         
         // --- แก้ไขโหมดตรงนี้ก่อน Push ---
         // 1 = Customer, 2 = Invoice, 3 = Order, 4 = Payment
-        DEPLOY_MODE = "3" 
+        DEPLOY_MODE = "4" 
     }
 
     stages {
