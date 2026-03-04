@@ -28,4 +28,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  pg_data:kritsanapon 
+  pg_data:
