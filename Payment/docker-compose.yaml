@@ -1,15 +1,18 @@
 services:
   api-payment:
-    image: sooyaa1/payment-erpapi:v1  # ดึง Image ที่คุณเพิ่ง Push ไป
+    image: sooyaa1/payment-erpapi:v1
     container_name: fastapi-payment-api
     ports:
-      - "8003:8000"  # ใช้ Port 8002 เพื่อไม่ให้ชนกับ Customer(8000) และ Order(8001)
+      - "8003:8000"  # Map ออกมาที่ Port 8003
     environment:
-      # เชื่อมต่อไปยัง container ชื่อ postgres-db โดยตรง
-      # หมายเหตุ: หากรันคนละ Compose ต้องมั่นใจว่าอยู่ Network เดียวกัน
+      # เชื่อมต่อไปยัง Hostname 'postgres-db'
       - DATABASE_URL=postgresql://postgres:postgres@postgres-db:5432/hrdb
       - API_KEY=chosy-secret-key-2026
+    networks:
+      - erp-network
     restart: unless-stopped
-    # หากคุณมี network กลาง ให้ระบุตรงนี้ครับ
-    # networks:
-    #   - erp-network
+
+networks:
+  # เชื่อมต่อกับ network วงกลางที่สร้างไว้ในโปรเจกต์หลัก
+  erp-network:
+    external: true
