@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     DOCKER_HOST  = "apiadmin@172.188.16.48"        // IP เครื่อง Docker
-    DEPLOY_DIR   = "/opt/deploy/DEPLOY-APIFORLAB"  // โฟลเดอร์ปลายทาง
+    DEPLOY_DIR   = "/home/apiadmin/deploy/DEPLOY-APIFORLAB"  // โฟลเดอร์ปลายทาง
     SERVICE_DIR  = "Customer"
     COMPOSE_FILE = "docker-compose.yaml"
     PROJECT_NAME = "customer"
